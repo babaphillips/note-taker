@@ -1,6 +1,6 @@
-// const router = require("express").Router();
-// const notesRoutes = require("./noteRoutes");
+const router = require("express").Router();
+const noteRoutes = require("../apiRoutes/noteRoutes");
 
-// router.use(notesRoutes);
+router.use(noteRoutes);
 
-// module.exports = router;
+module.exports = router;
