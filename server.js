@@ -1,49 +1,12 @@
-// const fs = require("fs");
-// const path = require("path");
-// const express = require("express");
-
-// const apiRoutes = require("./routes/apiRoutes");
-// const htmlRoutes = require("./routes/htmlRoutes");
-
-// const PORT = process.env.PORT || 3001;
-// const app = express();
-
-// app.use(express.static("public"));
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-// app.use("/api", apiRoutes);
-// app.use("/", htmlRoutes);
-
-// app.listen(PORT, () => {
-//   console.log(`API server now on port ${PORT}!`);
-// });
-
-const express = require("express");
-const app = express();
+// Start by creating a route that the front-end can request data from. Start by requiring the data by adding the following code to the top
 const { notes } = require("./data/notes");
+// Just like any other npm package, we will require Express.js
+const express = require("express");
+// Setting up the server only takes two steps: we need to instantiate the server, then tell it to listen for requests. To instantiate the server
+const app = express();
 
-function filterByQuery(query, notesArray) {
-  //  // Note that we save the notesArray as filteredResults here:
-  let filteredResults = notesArray;
-  if (query.title) {
-    filteredResults = filteredResults.filter(
-      (note) => note.title === query.title
-    );
-  }
-  if (query.text) {
-    filteredResults = filteredResults.filter(
-      (note) => note.text === query.text
-    );
-  }
-  return filteredResults;
-}
-
-app.get("/api/notes", (req, res) => {
-  let results = notes;
-  if (req.query) {
-    results = filterByQuery(req.query, results);
-  }
-  res.json(results);
+app.get("/notes", (req, res) => {
+  res.json(notes);
 });
 
 app.listen(3001, () => {

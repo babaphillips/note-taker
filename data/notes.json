@@ -1,14 +1,19 @@
-[
-  {
-    "title": "Test Title",
-    "text": "Test text"
-  },
-  {
-    "title": "Mac Miller",
-    "text": "Music"
-  },
-  {
-    "title": "Nemo",
-    "text": "Movie"
-  }
-]
+{
+  "notes": [
+    {
+      "id": "0",
+      "title": "Test Title",
+      "text": "Test text"
+    },
+    {
+      "id": "1",
+      "title": "Mac Miller",
+      "text": "Music"
+    },
+    {
+      "id": "2",
+      "title": "Nemo",
+      "text": "Movie"
+    }
+  ]
+}
