@@ -27,12 +27,23 @@ function filterByQuery(query, notesArray) {
   return filteredResults;
 }
 
+function findById(id, notesArray) {
+  const result = notesArray.filter((note) => note.id === id)[0];
+  return result;
+}
+
 app.get("/notes", (req, res) => {
   let results = notes;
   if (req.query) {
     results = filterByQuery(req.query, results);
   }
   res.json(results);
+});
+
+//A param route must come after the other GET route
+app.get("/notes/:id", (req, res) => {
+  const result = findById(req.params.id, notes);
+  res.json(result);
 });
 
 app.listen(PORT, () => {
