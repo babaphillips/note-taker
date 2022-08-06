@@ -37,6 +37,14 @@ function findById(id, notesArray) {
   return result;
 }
 
+function createNewNote(body, notesArray) {
+  console.log(body);
+  // our function's main code will go here!
+
+  // return finished code to post route for response
+  return body;
+}
+
 app.get("/notes", (req, res) => {
   let results = notes;
   // req.query is multifaceted, often combining multiple parameters
@@ -59,8 +67,9 @@ app.get("/notes/:id", (req, res) => {
 
 //POST requests differ from GET requests in that they represent the action of a client requesting the server to accept data rather than vice versa.
 app.post("/notes", (req, res) => {
-  // req.body is where our incoming content will be
-  console.log(req.body);
+  // set id based on what the next index of the array will be
+  //Now when we receive new post data to be added to the notes.json file, we'll take the length property of the notes array and set that as the id for the new data. Remember, the length property is always going to be one number ahead of the last index of the array so we can avoid any duplicate values.
+  req.body.id = notes.length.toString();
   res.json(req.body);
 });
 
