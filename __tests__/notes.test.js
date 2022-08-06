@@ -1,89 +1,57 @@
-// const fs = require("fs");
-// const {
-//   filterByQuery,
-//   findById,
-//   createNewAnimal,
-//   validateAnimal,
-// } = require("../lib/notes.js");
-// const { notes } = require("../db/db.json");
+const fs = require("fs");
+const {
+  filterByQuery,
+  findById,
+  createNewNote,
+  validateNote,
+} = require("../lib/notes.js");
+const { notes } = require("../data/notes");
 
-// jest.mock("fs");
+test("creates a note object", () => {
+  const note = createNewNote(
+    { title: "Scream", id: "44", text: "Movie" },
+    notes
+  );
 
-// test("creates an animal object", () => {
-//   const animal = createNewAnimal(
-//     { name: "Darlene", id: "jhgdja3ng2" },
-//     animals
-//   );
+  expect(note.title).toBe("Scream");
+  expect(note.id).toBe("44");
+  expect(note.text).toBe("Movie");
+});
 
-//   expect(animal.name).toBe("Darlene");
-//   expect(animal.id).toBe("jhgdja3ng2");
-// });
+test("filters by query", () => {
+  const startingNotes = [
+    {
+      id: "3",
+      title: "Erica",
+      text: "gorilla",
+    },
+    {
+      id: "4",
+      title: "Noel",
+      text: "bear",
+    },
+  ];
 
-// test("filters by query", () => {
-//   const startingAnimals = [
-//     {
-//       id: "3",
-//       name: "Erica",
-//       species: "gorilla",
-//       diet: "omnivore",
-//       personalityTraits: ["quirky", "rash"],
-//     },
-//     {
-//       id: "4",
-//       name: "Noel",
-//       species: "bear",
-//       diet: "carnivore",
-//       personalityTraits: ["impish", "sassy", "brave"],
-//     },
-//   ];
+  const updatedNotes = filterByQuery({ text: "gorilla" }, startingNotes);
 
-//   const updatedAnimals = filterByQuery({ species: "gorilla" }, startingAnimals);
+  expect(updatedNotes.length).toEqual(1);
+});
 
-//   expect(updatedAnimals.length).toEqual(1);
-// });
+test("finds by id", () => {
+  const startingNotes = [
+    {
+      id: "3",
+      title: "Erica",
+      text: "gorilla",
+    },
+    {
+      id: "4",
+      title: "Noel",
+      text: "bear",
+    },
+  ];
 
-// test("finds by id", () => {
-//   const startingAnimals = [
-//     {
-//       id: "3",
-//       name: "Erica",
-//       species: "gorilla",
-//       diet: "omnivore",
-//       personalityTraits: ["quirky", "rash"],
-//     },
-//     {
-//       id: "4",
-//       name: "Noel",
-//       species: "bear",
-//       diet: "carnivore",
-//       personalityTraits: ["impish", "sassy", "brave"],
-//     },
-//   ];
+  const result = findById("3", startingNotes);
 
-//   const result = findById("3", startingAnimals);
-
-//   expect(result.name).toBe("Erica");
-// });
-
-// test("validates personality traits", () => {
-//   const animal = {
-//     id: "3",
-//     name: "Erica",
-//     species: "gorilla",
-//     diet: "omnivore",
-//     personalityTraits: ["quirky", "rash"],
-//   };
-
-//   const invalidAnimal = {
-//     id: "3",
-//     name: "Erica",
-//     species: "gorilla",
-//     diet: "omnivore",
-//   };
-
-//   const result = validateAnimal(animal);
-//   const result2 = validateAnimal(invalidAnimal);
-
-//   expect(result).toBe(true);
-//   expect(result2).toBe(false);
-// });
+  expect(result.title).toBe("Erica");
+});
