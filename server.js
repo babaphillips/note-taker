@@ -1,3 +1,7 @@
+// This is another module built into the Node.js API that provides utilities for working with file and directory paths.
+const fs = require("fs");
+const path = require("path");
+
 // Start by creating a route that the front-end can request data from. Start by requiring the data by adding the following code to the top
 const { notes } = require("./data/notes");
 // Just like any other npm package, we will require Express.js
@@ -38,11 +42,15 @@ function findById(id, notesArray) {
 }
 
 function createNewNote(body, notesArray) {
-  console.log(body);
-  // our function's main code will go here!
-
+  const note = body;
+  notesArray.push(note);
+  fs.writeFileSync(
+    path.join(__dirname, "./data/notes.json"),
+    //The other two arguments used in the method, null and 2, are means of keeping our data formatted. The null argument means we don't want to edit any of our existing data; if we did, we could pass something in there. The 2 indicates we want to create white space between our values to make it more readable.
+    JSON.stringify({ notes: notesArray }, null, 2)
+  );
   // return finished code to post route for response
-  return body;
+  return note;
 }
 
 app.get("/notes", (req, res) => {
@@ -70,7 +78,9 @@ app.post("/notes", (req, res) => {
   // set id based on what the next index of the array will be
   //Now when we receive new post data to be added to the notes.json file, we'll take the length property of the notes array and set that as the id for the new data. Remember, the length property is always going to be one number ahead of the last index of the array so we can avoid any duplicate values.
   req.body.id = notes.length.toString();
-  res.json(req.body);
+  //add note to json file and animals array in this function
+  const note = createNewNote(req.body, notes);
+  res.json(note);
 });
 
 app.listen(PORT, () => {
