@@ -1,12 +1,6 @@
 const router = require("express").Router();
 const crypto = require("crypto");
-const {
-  readFromFile,
-  findById,
-  createNewNote,
-  readAndAppend,
-  deleteNote,
-} = require("../lib/notes");
+const { readFromFile, createNewNote, readAndAppend } = require("../lib/notes");
 
 // getting data from my db.json file passing the data
 router.get("/notes", (req, res) => {
@@ -20,9 +14,9 @@ router.post("/notes", (req, res) => {
   res.json("added new note!");
 });
 
-router.delete("/notes/:id", (req, res) => {
-  const result = findById(req.params.id, notes);
-  deleteNote();
-});
+// router.delete("/notes/:id", (req, res) => {
+//   const result = findById(req.params.id, readAndAppend);
+//   deleteNote();
+// });
 
 module.exports = router;
