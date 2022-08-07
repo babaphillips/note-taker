@@ -98,6 +98,7 @@
     "imurmurhash": "^0.1.4",
     "inflight": "^1.0.6",
     "inherits": "^2.0.4",
+    "inquirer": "^9.1.0",
     "ipaddr.js": "^1.9.1",
     "is-arrayish": "^0.2.1",
     "is-core-module": "^2.10.0",
