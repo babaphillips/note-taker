@@ -5,6 +5,7 @@ const {
   findById,
   createNewNote,
   readAndAppend,
+  deleteNote,
 } = require("../lib/notes");
 
 // getting data from my db.json file passing the data
