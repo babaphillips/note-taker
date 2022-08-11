@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const crypto = require("crypto");
 const { readFromFile, createNewNote, readAndAppend } = require("../lib/notes");
+const { v4: uuidv4 } = require("uuid");
 
 // getting data from my db.json file passing the data
 router.get("/notes", (req, res) => {
@@ -9,8 +9,12 @@ router.get("/notes", (req, res) => {
 
 //POST requests differ from GET requests in that they represent the action of a client requesting the server to accept data - passing the notes data to the server and creating a random id w package crypto
 router.post("/notes", (req, res) => {
-  req.body.id = crypto.randomUUID();
-  readAndAppend(req.body, "./db/db.json");
+  const newNote = {
+    text: req.body.text,
+    title: req.body.title,
+    id: uuidv4(),
+  };
+  readAndAppend(newNote, "./db/db.json");
   res.json("added new note!");
 });
 

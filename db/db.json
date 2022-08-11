@@ -4,23 +4,8 @@
         "text": "Test text"
     },
     {
-        "title": "Amanda",
-        "text": "Hello",
-        "id": "acb12e39-44b5-4edc-b69d-3731bcafe049"
-    },
-    {
-        "title": "Sunday Afternoon",
-        "text": "Finish Weekly Assignment 10",
-        "id": "dc4a46ca-e131-425b-9277-6dc8ff250822"
-    },
-    {
-        "title": "Hey",
-        "text": "Ho",
-        "id": "beba423c-933c-4836-95fa-e7c0d6204b4f"
-    },
-    {
-        "title": "Music",
-        "text": "Love",
-        "id": "c746ccbb-e012-48fe-b93d-750f0da8066f"
+        "text": "this should have uuid",
+        "title": "new note",
+        "id": "9be14cf8-d078-43d9-88a2-c47430014bff"
     }
 ]
