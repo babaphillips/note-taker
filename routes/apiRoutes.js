@@ -1,5 +1,10 @@
 const router = require("express").Router();
-const { readFromFile, createNewNote, readAndAppend } = require("../lib/notes");
+const {
+  readFromFile,
+  createNewNote,
+  readAndAppend,
+  deleteNote,
+} = require("../lib/notes");
 const { v4: uuidv4 } = require("uuid");
 
 // getting data from my db.json file passing the data
@@ -18,9 +23,9 @@ router.post("/notes", (req, res) => {
   res.json("added new note!");
 });
 
-// router.delete("/notes/:id", (req, res) => {
-//   const result = findById(req.params.id, readAndAppend);
-//   deleteNote();
-// });
+router.delete("/notes/:id", (req, res) => {
+  deleteNote(req.params.id, "./db/db.json");
+  res.json("note deleted!");
+});
 
 module.exports = router;

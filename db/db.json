@@ -2,10 +2,5 @@
     {
         "title": "Test Title",
         "text": "Test text"
-    },
-    {
-        "text": "this should have uuid",
-        "title": "new note",
-        "id": "9be14cf8-d078-43d9-88a2-c47430014bff"
     }
 ]
